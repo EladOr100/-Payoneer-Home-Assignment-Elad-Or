@@ -16,13 +16,16 @@ class BETests(BasicTest):
 
     def getBookById(self, book_id):
         response = requests.get('https://fakerestapi.azurewebsites.net/api/v1/Books/{}'.format(book_id))
-        assert response.status_code == 200
-        if response.status_code != 200:
-            print("Error")
-            return False
-        else:
-            print("book found")
-            return True
+        try:
+            assert response.status_code != 200
+            if response.status_code == 200:
+                print("Error")
+                return False
+            else:
+                print("book found")
+                return True
+        except:
+            print("cant validate data")
 
     def destructor(self):
         pass
