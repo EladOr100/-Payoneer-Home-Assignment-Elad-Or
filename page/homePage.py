@@ -2,6 +2,7 @@ import configparser
 
 from definitions import CONFIG_FILE
 
+
 class HomePageSwagger:
     def __init__(self, driver):
         self.driver = driver
@@ -16,72 +17,70 @@ class HomePageSwagger:
         self.post_request_body_json_text_area = '#operations-Books-post_api_v1_Books .opblock-section-request-body .opblock-description-wrapper textarea.body-param__text'
         self.post_execute_button = '#operations-Books-post_api_v1_Books  .execute-wrapper button'
         self.post_get_resonse_code = '#operations-Books-post_api_v1_Books .response .response-col_status'
+
     # get book by id functions
 
     def press_get_book_by_id_button(self):
-
-        element = self.driver.find_element_by_css_selector(self.get_book_by_id_button)
-        if element:
+        try:
             self.driver.find_element_by_css_selector(self.get_book_by_id_button).click()
-        else:
+        except:
             print("cant find element{}".format(self.get_book_by_id_button))
 
     def press_try_it_out_button(self):
-        element = self.driver.find_element_by_css_selector(self.get_try_it_out_button)
-        if element:
+
+        try:
             self.driver.find_element_by_css_selector(self.get_try_it_out_button).click()
-        else:
+        except:
             print("cant find element{}".format(self.get_try_it_out_button))
 
     def insert_book_id(self, book_id):
-        element = self.driver.find_element_by_css_selector(self.get_id_text_area)
-        if element:
+        try:
             self.driver.find_element_by_css_selector(self.get_id_text_area).send_keys(book_id)
-        else:
+        except:
             print("cant find element{}".format(self.get_id_text_area))
 
     def press_execute_button(self):
-        element = self.driver.find_element_by_css_selector(self.get_execute_button)
-        self.driver.find_element_by_css_selector(self.get_execute_button).click()
+        try:
+            self.driver.find_element_by_css_selector(self.get_execute_button).click()
+        except:
+            print("cant find element{}".format(self.get_id_text_area))
 
     def get_response_code(self):
-        element = self.driver.find_element_by_css_selector(self.get_response_code_ui)
-        response_code = self.driver.find_element_by_css_selector(self.get_response_code_ui).text
+        response_code = None
+        try:
+            response_code = self.driver.find_element_by_css_selector(self.get_response_code_ui).text
+        except:
+            print("cant find element{}".format(self.get_response_code_ui))
         return response_code
 
     # add book functions
     def press_post_book_button(self):
-        element = self.driver.find_element_by_css_selector(self.post_book_button)
-        if element:
+        try:
             self.driver.find_element_by_css_selector(self.post_book_button).click()
-        else:
+        except:
             print("cant find element{}".format(self.post_book_button))
 
     def press_post_try_it_now_button(self):
-        element = self.driver.find_element_by_css_selector(self.post_try_it_out_button)
-        if element:
+        try:
             self.driver.find_element_by_css_selector(self.post_try_it_out_button).click()
-        else:
+        except:
             print("cant find element{}".format(self.post_try_it_out_button))
 
     def insert_post_request_body(self, request_body):
-        element = self.driver.find_element_by_css_selector(self.post_request_body_json_text_area)
-        if element:
+        try:
             self.driver.find_element_by_css_selector(self.post_request_body_json_text_area).clear()
             self.driver.find_element_by_css_selector(self.post_request_body_json_text_area).send_keys(str(request_body))
-        else:
+        except:
             print("cant find element{}".format(self.post_request_body_json_text_area))
 
     def press_post_execute_button(self):
-        element = self.driver.find_element_by_css_selector(self.post_execute_button)
-        if element:
+        try:
             self.driver.find_element_by_css_selector(self.post_execute_button).click()
-        else:
+        except:
             print("cant find element{}".format(self.post_execute_button))
 
     def get_response_code_post(self):
-        element = self.driver.find_element_by_css_selector(self.post_execute_button)
-        if element:
+        try:
             self.driver.find_element_by_css_selector(self.post_execute_button).click()
-        else:
+        except:
             print("cant find element{}".format(self.post_execute_button))
