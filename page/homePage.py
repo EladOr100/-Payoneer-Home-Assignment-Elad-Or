@@ -8,13 +8,13 @@ class HomePageSwagger:
         self.get_book_by_id_button = '#operations-Books-get_api_v1_Books__id_>div>span'
         self.get_try_it_out_button = '#operations-Books-get_api_v1_Books__id_ button.btn.try-out__btn'
         self.get_id_text_area = '#operations-Books-get_api_v1_Books__id_ .parameters tr[data-param-name="id"] .parameters-col_description input'
-        self.get_execute_button = '#operations-Books-get_api_v1_Books_id  .execute-wrapper button'
-        self.get_response_code_ui = '#operations-Books-get_api_v1_Books_id .responses-wrapper .responses-inner .responses-table tbody tr.response > .response-col_status'
+        self.get_execute_button = '#operations-Books-get_api_v1_Books__id_ .execute-wrapper button'
+        self.get_response_code_ui = '#operations-Books-get_api_v1_Books__id_ .responses-wrapper .responses-inner .responses-table tbody tr.response > .response-col_status'
 
         self.post_book_button = '#operations-Books-post_api_v1_Books span.opblock-summary-method'
         self.post_try_it_out_button = '#operations-Books-post_api_v1_Books button.btn.try-out__btn'
         self.post_request_body_json_text_area = '#operations-Books-post_api_v1_Books .opblock-section-request-body .opblock-description-wrapper textarea.body-param__text'
-        self.post_execute_button = '#operations-Books-post_api_v1_Books .execute-wrapper button.btn.execute.opblock-control__btn'
+        self.post_execute_button = '#operations-Books-post_api_v1_Books  .execute-wrapper button'
         self.post_get_resonse_code = '#operations-Books-post_api_v1_Books .response .response-col_status'
     # get book by id functions
 
@@ -45,8 +45,8 @@ class HomePageSwagger:
         self.driver.find_element_by_css_selector(self.get_execute_button).click()
 
     def get_response_code(self):
-        element = self.driver.find_element_by_css_selector(self.get_execute_button)
-        response_code = self.driver.find_element_by_css_selector(self.get_execute_button).text()
+        element = self.driver.find_element_by_css_selector(self.get_response_code_ui)
+        response_code = self.driver.find_element_by_css_selector(self.get_response_code_ui).text
         return response_code
 
     # add book functions
@@ -67,7 +67,8 @@ class HomePageSwagger:
     def insert_post_request_body(self, request_body):
         element = self.driver.find_element_by_css_selector(self.post_request_body_json_text_area)
         if element:
-            self.driver.find_element_by_css_selector(self.post_request_body_json_text_area).send_keys(request_body)
+            self.driver.find_element_by_css_selector(self.post_request_body_json_text_area).clear()
+            self.driver.find_element_by_css_selector(self.post_request_body_json_text_area).send_keys(str(request_body))
         else:
             print("cant find element{}".format(self.post_request_body_json_text_area))
 

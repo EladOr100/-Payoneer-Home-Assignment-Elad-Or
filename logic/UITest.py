@@ -25,14 +25,14 @@ class UiTests(BasicTest):
         self.my_page.press_execute_button()
         time.sleep(1)
         responce_code = self.my_page.get_response_code()
-        assert responce_code == 200
-
+        assert responce_code == '200'
 
     def addBook(self, book_data_body):
 
         self.my_page.press_post_book_button()
-        self.my_page.press_post_execute_button()
+        self.my_page.press_post_try_it_now_button()
         self.my_page.insert_post_request_body(book_data_body)
+        self.my_page.press_post_execute_button()
 
     def destructor(self):
         self.driver.close()

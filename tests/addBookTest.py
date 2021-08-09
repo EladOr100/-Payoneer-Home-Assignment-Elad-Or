@@ -13,7 +13,6 @@ class LoginTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         print("TEST START")
-
         # config init - get params from config file
         cls.my_config_parser = configparser.ConfigParser()
         cls.my_config_parser.read(CONFIG_FILE)
